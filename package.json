@@ -3,14 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "classnames": "^2.2.5",
+    "cors": "^2.8.4",
+    "corser": "^2.0.1",
+    "cross-fetch": "^2.1.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "foreman": "^2.0.0",
+    "forest-express-mongoose": "^2.5.2",
+    "mongoose": "^5.0.9",
+    "nodemon": "^1.17.1",
+    "npm": "^5.8.0",
+    "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-icons": "^2.2.7",
+    "react-modal": "^3.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
+    "shortid": "^2.2.8",
+    "typeface-roboto": "0.0.50"
   },
   "devDependencies": {
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "video.js": "^6.7.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "startApi": "nodemon server.js",
+    "startApp": "react-scripts start",
+    "start": "npm-run-all --parallel startApi startApp",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -1,0 +1,16 @@
+.main-header {
+  position: fixed;
+  top: 0px;
+  text-align: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 240px);
+  height: 50px;
+  z-index: 100;
+  background-color: #1E1E1B;
+  border-bottom: 1px solid #666;
+}
+
+.header-bold {
+  color: #FFC708;
+}

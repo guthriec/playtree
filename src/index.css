@@ -1,5 +1,18 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  height: 100%;
+  width: 100%;
+  background-color: #1E1E1B;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }
