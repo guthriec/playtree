@@ -29,9 +29,8 @@ function cors(req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
-app.use(express.static('localvideos'));
 app.use(express.static(path.join(__dirname, 'client/build')));
+console.log(path.join(__dirname, 'client/build'));
 
 app.use(cors);
 router.use(cors);
