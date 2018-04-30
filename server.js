@@ -13,7 +13,7 @@ const path = require('path');
 var app = express();
 var router = express.Router();
 
-var port = process.env.API_PORT || 3001;
+var port = process.env.PORT || 3001;
 
 
 function cors(req, res, next) {
