@@ -44,11 +44,13 @@ export function requestFeed(feedKey) {
 }
 
 export function fetchFeed(feedKey, adjective, name, location) {
+  console.log('in fetchfeed');
   return function(dispatch) {
     dispatch(requestFeed(feedKey));
-    return fetch('http://localhost:3001/api/feed/' + feedKey)
+    return fetch('/api/feed/' + feedKey)
       .then(
         response => {
+          console.log(response);
           return response.json();
         }
       )
@@ -115,7 +117,7 @@ function receiveVideoApi(video) {
 function fetchAndLoadVideo(videoId) {
   return function(dispatch) {
     dispatch(requestVideoApi(videoId));
-    return fetch('http://localhost:3001/api/video/' + videoId)
+    return fetch('/api/video/' + videoId)
       .then(
         response => {
           return response.json();
@@ -134,6 +136,7 @@ function fetchAndLoadVideo(videoId) {
 }
 
 export function fetchHomeVideos() {
+  console.log('here');
   return function(dispatch) {
     dispatch(fetchFeed('home', "adventure", "Home", ""));
   }
@@ -157,7 +160,7 @@ export function receiveChannel(channel, json) {
 export function fetchChannel(channel) {
   return function(dispatch) {
     dispatch(requestChannel(channel));
-    return fetch('http://localhost:3001/api/channel/' + channel)
+    return fetch('/api/channel/' + channel)
       .then(
         response => {
           return response.json();
@@ -175,7 +178,7 @@ export function fetchChannel(channel) {
 }
 
 export function hideVideo(videoId, feedKey) {
-  fetch('http://localhost:3001/api/feedback', {
+  fetch('/api/feedback', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'

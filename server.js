@@ -8,6 +8,7 @@ const Video = Models.Video;
 const Channel = Models.Channel;
 const Feed = require('./model/feed');
 const ScoredVideo = require('./model/scoredVideo');
+const path = require('path');
 
 var app = express();
 var router = express.Router();
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(express.static('localvideos'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(cors);
 router.use(cors);
