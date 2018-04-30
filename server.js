@@ -33,10 +33,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
 console.log(path.join(__dirname, 'client/build'));
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 app.use(cors);
 router.use(cors);
 router.options("*", cors);
@@ -88,6 +84,11 @@ router.route('/feedback')
 })
 
 app.use('/api', router);
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 
 app.use(require('forest-express-mongoose').init({
   modelsDir: __dirname + '/model',
