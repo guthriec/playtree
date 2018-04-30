@@ -29,8 +29,13 @@ function cors(req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'client/build')));
 console.log(path.join(__dirname, 'client/build'));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.use(cors);
 router.use(cors);
