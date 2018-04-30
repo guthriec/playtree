@@ -9,6 +9,9 @@
 # production
 /build
 
+# local test files
+/localvideos
+
 # misc
 .DS_Store
 .env
