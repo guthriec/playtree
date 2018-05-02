@@ -44,13 +44,11 @@ export function requestFeed(feedKey) {
 }
 
 export function fetchFeed(feedKey, adjective, name, location) {
-  console.log('in fetchfeed');
   return function(dispatch) {
     dispatch(requestFeed(feedKey));
     return fetch('/api/feed/' + feedKey)
       .then(
         response => {
-          console.log(response);
           return response.json();
         }
       )
