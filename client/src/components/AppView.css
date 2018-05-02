@@ -36,6 +36,10 @@
   text-align: right;
 }
 
+.side-header a {
+  color: inherit;
+}
+
 .title .main-title {
   font-size: 18px;
   font-weight: 500;
