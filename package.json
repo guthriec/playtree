@@ -12,11 +12,17 @@
   "author": "Chris Guthrie",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "forest-express-mongoose": "^2.8.4",
+    "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.17",
     "nodemon": "^1.17.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "react-s3-uploader": "^4.8.0",
     "shortid": "^2.2.8"
   }
 }

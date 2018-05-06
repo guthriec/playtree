@@ -1,5 +1,7 @@
 import fetch from 'cross-fetch';
 
+export * from './authActions';
+
 export const CACHE_VIDEO_INFO = 'CACHE_VIDEO_INFO';
 export const LOAD_VIDEO = 'LOAD_VIDEO';
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';

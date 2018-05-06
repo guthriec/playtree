@@ -10,9 +10,10 @@ import ReactModal from 'react-modal';
 
 import './index.css';
 import App from './containers/App';
+import SignIn from './containers/signIn';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
-import { fetchChannel, fetchHomeVideos } from './actions';
+import { fetchChannel, fetchHomeVideos, loadUser } from './actions';
 
 import thunkMiddleware from 'redux-thunk';
 
@@ -23,6 +24,7 @@ const store = createStore(
   )
 );
 
+store.dispatch(loadUser());
 store.dispatch(fetchHomeVideos());
 store.dispatch(fetchChannel('skiing'));
 store.dispatch(fetchChannel('travel'));
@@ -39,6 +41,7 @@ ReactDOM.render(<Provider store={store}>
                              component={App} />
                       <Route path="/channel/:channel" component={App} />
                       <Route path="/video/:video" component={App} />
+                      <Route path="/sign-in" component={SignIn} />
                       <Route exact path="/" component={App} />
                     </Switch>
                   </Router>

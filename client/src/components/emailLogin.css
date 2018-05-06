@@ -1,0 +1,67 @@
+.email-login {
+  width: 300px;
+  margin: 20px auto;
+  font-size: 14px;
+}
+
+.email-login input {
+  width: 100%;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: black;
+  border: 1px solid #33332D; 
+  border-radius: 4px;
+  color: white;
+}
+
+.email-login label p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-left: 2px;
+}
+
+.email-login input[type="submit"] {
+  background-color: #33332D; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  width: 50%;
+  cursor: pointer;
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
+.email-login input[type="submit"]:hover {
+  color: #FFC708;
+  border-color: #FFC708;
+}
+
+.email-login .horizontal {
+  display: flex;
+  align-items: top;
+}
+
+.show-password {
+  display: flex;
+  align-items: top;
+  justify-content: left;
+  width: 50%;
+}
+
+.email-login .show-password input {
+  margin-bottom: 0;
+  width: auto;
+  margin-top: 0;
+  font-size: 16px;
+  color: black;
+}
+
+.email-login .show-password p {
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-left: 5px;
+}

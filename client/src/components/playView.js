@@ -11,10 +11,12 @@ export default class PlayView extends Component {
       autoplay: true,
       controls: true,
       inactivityTimeout: 5000,
+      preload: "auto",
       poster: this.props.video.thumbnailUrl
     }
     var returnDestination = this.props.feedLocation;
     var returnLinkText = this.props.feedName;
+    console.log(this.props.video.url);
     return (
       <div className="play">
         <div className={this.props.headerClass}>
@@ -34,7 +36,8 @@ export default class PlayView extends Component {
         </div>
         <div className="video-container">
           <VideoPlayer
-            src={this.props.video.url}
+            srcUrl={this.props.video.url}
+            srcType="application/dash+xml"
             options={options}
             onActive={this.props.onActive}
             onInactive={this.props.onInactive}

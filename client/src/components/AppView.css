@@ -112,3 +112,9 @@
 .entry-list {
   margin-top: 50px;
 }
+
+.side-footer {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}

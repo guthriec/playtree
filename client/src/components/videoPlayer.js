@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import videojs from 'video.js';
+import 'videojs-contrib-dash';
+import 'dashjs';
+
 import 'video.js/dist/video-js.css';
 
 import './play.css';
@@ -13,7 +16,10 @@ export default class VideoPlayer extends Component {
                             this.on("useractive", onActive);
                             this.on("userinactive", onInactive);
     });
-    this.player.src(this.props.src);
+    this.player.src({
+      src: this.props.srcUrl,
+      type: this.props.srcType
+    });
   }
 
   componentWillUnmount() {
@@ -23,9 +29,12 @@ export default class VideoPlayer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.src && this.player) {
-      if (nextProps.src !== this.props.src) {
-        this.player.src(nextProps.src);
+    if (nextProps.srcUrl && this.player) {
+      if (nextProps.srcUrl !== this.props.srcUrl) {
+        this.player.src({
+          src: nextProps.srcUrl,
+          type: nextProps.srcType
+        });
       }
     }
     //problem on poster update?
