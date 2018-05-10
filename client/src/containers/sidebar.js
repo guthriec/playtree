@@ -10,7 +10,7 @@ import HomeButtonView from '../components/homeButtonView';
 import ChannelNavView from '../components/channelNavView';
 
 
-class Sidebar extends React.Component {
+class Sidebar extends Component {
   render() {
     return (
       <div className="sidenav">

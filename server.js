@@ -116,6 +116,11 @@ router.route('/feedback')
 
 app.use('/api', router);
 
+app.use('/s3', require('react-s3-uploader/s3router')({
+  bucket: "playtree-video-in",
+  headers: {'Access-Control-Allow-Origin': '*'}
+}));
+
 app.use(require('forest-express-mongoose').init({
   modelsDir: __dirname + '/model',
   envSecret: process.env.FOREST_ENV_SECRET,
@@ -123,8 +128,7 @@ app.use(require('forest-express-mongoose').init({
   mongoose: require('mongoose')
 }));
 
-
-app.get('/*', function(req, res) {
+app.get('/*', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 

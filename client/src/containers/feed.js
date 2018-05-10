@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { feedKeyFromParams } from '../utils';
 
 import VideoEntry from './videoEntry';
-import MainHeader from '../components/mainHeader';
+import FeedHeader from '../components/feedHeader';
 
-class Main extends Component {
+class Feed extends Component {
   render() {
     var videoList = []
     if ("videos" in this.props.feed) {
@@ -24,7 +24,7 @@ class Main extends Component {
     }
     return (
       <div className="main">
-        <MainHeader adjective = {this.props.feed.adjective}/>
+        <FeedHeader adjective = {this.props.feed.adjective}/>
         <div className="entry-list">
           { entryList }
         </div>
@@ -50,4 +50,4 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Feed));

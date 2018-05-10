@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { clearActiveVideo, requestVideoLoad } from '../actions';
 
 import Sidebar from './sidebar';
-import Main from './main';
+import Feed from './feed';
 import Play from './play';
 
 class App extends Component {
@@ -38,7 +38,7 @@ class App extends Component {
       return (
         <div>
           <Sidebar />
-          <Main />
+          <Feed />
         </div>
       );
     }

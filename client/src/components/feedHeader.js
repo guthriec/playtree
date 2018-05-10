@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import './mainHeader.css';
+import './feedHeader.css';
 
-export default class MainHeader extends Component {
+export default class FeedHeader extends Component {
   render() {
     return (
-      <div className="main-header">
+      <div className="feed-header">
         <p>
           your source for
           <b className="header-bold"> {this.props.adjective} </b>
