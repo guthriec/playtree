@@ -19,8 +19,6 @@ import { fetchChannel, fetchHomeVideos, loadUser } from './actions';
 
 import thunkMiddleware from 'redux-thunk';
 
-require('dotenv').config();
-
 const store = createStore(
   reducer,
   composeWithDevTools(
