@@ -8,9 +8,9 @@ import { hideVideo, showVideo } from '../actions';
 class VideoEntry extends Component {
   constructor(props) {
     super(props);
-    var shareLink = "playtree.com";
+    var shareLink = "playtree.tv";
     if ('location' in props.feed) {
-      shareLink = "playtree.com" + props.feed.location + "/video/" +
+      shareLink = "playtree.tv" + props.feed.location + "/video/" +
                   props.video.shortId;
     }
     this.state = {
