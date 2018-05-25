@@ -149,10 +149,11 @@ button {
 }
 
 .desc-text {
+  letter-spacing: 0.5px;
   white-space: normal;
   font-size: 16px;
   line-height: 1.75;
-  color: #ddd;
+  color: #ccc;
   overflow: hidden;
   max-height: 170px;
   text-align: left;

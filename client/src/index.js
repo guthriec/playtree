@@ -12,11 +12,14 @@ import './index.css';
 import App from './containers/App';
 import SignIn from './containers/signIn';
 import Uploader from './containers/uploader';
+import SubmissionInfo from './containers/submissionInfo';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import { fetchChannel, fetchHomeVideos, loadUser } from './actions';
 
 import thunkMiddleware from 'redux-thunk';
+
+require('dotenv').config();
 
 const store = createStore(
   reducer,
@@ -44,6 +47,7 @@ ReactDOM.render(<Provider store={store}>
                       <Route path="/video/:video" component={App} />
                       <Route path="/sign-in" component={SignIn} />
                       <Route path="/new-upload" component={Uploader} />
+                      <Route path="/submit-info" component={SubmissionInfo} />
                       <Route exact path="/" component={App} />
                     </Switch>
                   </Router>

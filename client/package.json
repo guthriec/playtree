@@ -15,6 +15,7 @@
     "babel-polyfill": "^6.26.0",
     "cross-fetch": "^2.1.1",
     "dashjs": "^2.6.8",
+    "dotenv": "^5.0.1",
     "npm": "^6.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

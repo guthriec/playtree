@@ -109,8 +109,19 @@
   color: white;
 }
 
+.main .info {
+  width: 100%;
+  padding-top: 50px;
+  text-align: center;
+  color: #ccc;
+}
+
+.main .info a {
+  color: white;
+}
+
 .entry-list {
-  margin-top: 50px;
+  padding-top: 50px;
 }
 
 .side-footer {
