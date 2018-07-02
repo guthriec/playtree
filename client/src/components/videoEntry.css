@@ -38,7 +38,7 @@ button {
 .share-button, .dismiss-button {
   display: block;
   width: 100%;
-  font-size: 12px;
+  font-size: 13px;
   color: #ddd;
 }
 
@@ -151,17 +151,17 @@ button {
 .desc-text {
   letter-spacing: 0.5px;
   white-space: normal;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.75;
-  color: #ccc;
+  color: #ddd;
   overflow: hidden;
-  max-height: 170px;
+  max-height: 180px;
   text-align: left;
 }
 
 .more-button {
-  margin-top: 24px;
-  font-size: 16px;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 .author {

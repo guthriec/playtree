@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import Sidebar from './sidebar';
 
-class Uploader extends Component {
+class SubmissionInfo extends Component {
   render() {
     return (
       <div>
         <Sidebar />
         <div className="main">
           <div className="info">
-            <h3>Email <a href="mailto:hello@sho.global">hello@sho.global</a> for info</h3>
+            <h3>Email <a href="mailto:submissions@playtree.tv">submissions@playtree.tv</a> for info</h3>
           </div>
         </div>
       </div>
@@ -17,4 +17,4 @@ class Uploader extends Component {
   }
 }
 
-export default Uploader;
+export default SubmissionInfo;
