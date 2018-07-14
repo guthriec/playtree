@@ -36,7 +36,7 @@ class App extends Component {
       );
     } else {
       return (
-        <div>
+        <div className="main">
           <Sidebar />
           <Feed />
         </div>

@@ -1,0 +1,72 @@
+.feed {
+  width: calc(100% - 220px);
+  height: 100%;
+  margin-left: 220px;
+  color: white;
+}
+
+.wide-feed {
+  width: calc(100% - 70px);
+  height: 100%;
+  margin-left: 50px;
+  color: white;
+}
+
+.entry-list {
+  padding-top: 50px;
+}
+
+.feed-header {
+  position: fixed;
+  top: 0px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: calc(100% - 260px);
+  height: 50px;
+  z-index: 100;
+  background-color: #1E1E1B;
+  border-bottom: 1px solid #666;
+} 
+
+.wide-feed .feed-header {
+  width: calc(100% - 90px);
+}
+
+.header-bold {
+  color: #FFC708;
+}
+
+.blur-overlay {
+  z-index: 50;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 220px;
+  bottom: 0;
+}
+
+.blurred {
+  z-index: -4;
+  filter: blur(20px) brightness(70%);
+  overflow: hidden;
+}
+
+@media (min-width: 310px) and (max-width: 767px) {
+  .wide-feed .feed-header {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 90px);
+    height: 60px;
+  }
+
+  .wide-feed .feed-header p {
+    margin-top: 0.5em;
+  }
+
+  .wide-feed .entry-list {
+    width: 100%;
+    padding-top: 70px;
+  }
+}

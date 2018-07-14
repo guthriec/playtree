@@ -12,11 +12,18 @@ export default class SidebarHeaderView extends Component {
         <NavLink
           to='/'
           isActive={() => {return false}}>
-          <img className="logo" src={logo} alt="Logo" />
-          <div className="title">
-            <p className="main-title">Playtree</p>
-          </div>
+            <div className="title">
+              <p className="main-title">playtree.tv</p>
+            </div>
         </NavLink>
+        
+        <img
+          className="logo"
+          src={logo}
+          alt="Logo"
+          onClick = {() => this.props.collapse()}
+        />
+
       </div>
     );
   }

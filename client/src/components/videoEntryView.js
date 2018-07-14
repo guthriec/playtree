@@ -150,9 +150,9 @@ export default class VideoEntryView extends Component {
           </div>
           <div className="video-bottom">
             <div className="bottom-left">
-              <Link className="title-link" to={linkDestination}>
+              <button className="title-link">
                 <p>{video.title}</p>
-              </Link>
+              </button>
             </div>
             <div className="bottom-right">
               <button

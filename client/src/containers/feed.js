@@ -5,7 +5,10 @@ import { withRouter } from 'react-router-dom';
 import { feedKeyFromParams } from '../utils';
 
 import VideoEntry from './videoEntry';
-import FeedHeader from '../components/feedHeader';
+
+import FeedView from '../components/feedView';
+
+import { toggleSidebar } from '../actions';
 
 class Feed extends Component {
   render() {
@@ -23,12 +26,12 @@ class Feed extends Component {
       );
     }
     return (
-      <div className="main">
-        <FeedHeader adjective = {this.props.feed.adjective}/>
-        <div className="entry-list">
-          { entryList }
-        </div>
-      </div>
+      <FeedView
+        feedAdjective={this.props.feed.adjective}
+        entryList={entryList}
+        wideFeed={this.props.isSidebarCollapsed}
+        collapseSidebar={this.props.toggleSidebar}
+      />
     );
   }
 }
@@ -41,12 +44,16 @@ const mapStateToProps = function (state, ownProps) {
   }
   return {
     feedKey: feedKey,
-    feed: feedVal
+    feed: feedVal,
+    isSidebarCollapsed: state.sidebar.isCollapsed
   }
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    toggleSidebar: () => {
+      dispatch(toggleSidebar());
+    }
   }
 }
 

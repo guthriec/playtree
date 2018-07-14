@@ -4,30 +4,41 @@ import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
 
-import SidebarHeaderView from '../components/sidebarHeaderView';
-import SidebarFooter from './sidebarFooter';
-import HomeButtonView from '../components/homeButtonView';
-import ChannelNavView from '../components/channelNavView';
+import SidebarView from '../components/sidebarView';
+import SidebarExpanderView from '../components/sidebarExpanderView';
 
+import { toggleSidebar } from '../actions';
 
 class Sidebar extends Component {
   render() {
-    return (
-      <div className="sidenav">
-        <SidebarHeaderView />
-        <div className="full-section-divider"></div>
-        <HomeButtonView />
-        <ChannelNavView
-          channels={this.props.channels}
+    if (this.props.isCollapsed) {
+      return (
+        <SidebarExpanderView
+          expand={this.props.toggleSidebar}
         />
-        <SidebarFooter />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <SidebarView 
+          channels={this.props.channels}
+          toggleSidebar={this.props.toggleSidebar}
+        />
+      );
+    }
   }
 }
 
 const mapStateToProps = state => ({
-  channels: state.channels
+  channels: state.channels,
+  isCollapsed: state.sidebar.isCollapsed
 });
 
-export default withRouter(connect(mapStateToProps)(Sidebar));
+const mapDispatchToProps = function(dispatch) {
+  return {
+    toggleSidebar: () => {
+      dispatch(toggleSidebar());
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

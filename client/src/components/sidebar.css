@@ -1,0 +1,173 @@
+.sidenav {
+  height: 100%;
+  width: 220px;
+  background-color: #33332D;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  color: #eee;
+}
+
+.side-header {
+  display: block;
+  height: 50px;
+}
+
+.side-header .logo {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  background-color: var(--sidebar-collapser-color);
+  border-radius: 0px 0px 0px 10px;
+  cursor: pointer;
+}
+
+.side-header .title {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  text-align: left;
+}
+
+.side-header a {
+  color: inherit;
+}
+
+.title .main-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.sidenav .full-section-divider {
+  width: 80px;
+  background-color: #666;
+  height: 1px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.sidenav .topic-section-label p {
+  text-align: left;
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.sidenav .right-button {
+  text-align: right;
+  margin-right: 60px;
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sidenav .right-button a {
+  display: inline-block;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidenav .right-button .active {
+  color: var(--accent-color);
+}
+
+.sidenav .right-button a:hover {
+  color: var(--accent-color);
+}
+
+.sidenav .active {
+  color: var(--accent-color);
+}
+
+.side-footer {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  font-size: 10px;
+}
+
+.sidebar-collapser {
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  right: 0;
+  background-color: var(--sidebar-collapser-color);
+  cursor: pointer;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar-collapser .hide-menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar-collapser .hide-menu-button p {
+  color: #ccc;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.sidebar-expander {
+  height: 100%;
+  width: 50px;
+  background-color: var(--sidebar-collapser-color);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: #eee;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar-expander .show-menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidebar-expander .show-menu-button p {
+  text-align: center;
+  color: #ccc;
+  font-size: 12px;
+}
+
+.sidebar-expander .logo {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: var(--sidebar-collapser-color);
+  cursor: pointer;
+}

@@ -1,10 +1,9 @@
 .video-entry {
   text-align: left;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   white-space: nowrap;
   width: 100%;
-  height: 280px;
   display: flex;
 }
 
@@ -49,6 +48,8 @@ button {
 .video-container {
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .video-top {
@@ -102,6 +103,8 @@ button {
 .title-link {
   text-decoration: none;
   color: inherit;
+  font-size: 16px;
+  white-space: normal;
 }
 
 .title-link:hover {
@@ -175,6 +178,7 @@ button {
 }
 
 .license {
+  display: none;
   font-size: 12px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -242,4 +246,84 @@ button {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+@media (min-width: 310px) and (max-width: 767px) {
+
+  .entry-controls, .video-desc {
+    display: none;
+  }
+
+  .title-link p {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .video-entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+  }
+
+  .video-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .video-bottom {
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .video-bottom .bottom-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-bottom .bottom-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .author, .license {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .video-bottom .bottom-left, .video-bottom .bottom-right {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+  .entry-controls {
+    display: flex;
+  }
+  .video-entry {
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 310px) and (max-width: 500px) {
+  .video-go, .poster, .video-link, .poster-overlay {
+    width: 256px;
+    height: 144px;
+  }
+  .video-top {
+    height: 144px;
+  }
 }

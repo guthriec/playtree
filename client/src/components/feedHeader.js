@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './feedHeader.css';
-
 export default class FeedHeader extends Component {
   render() {
     return (
