@@ -16,6 +16,9 @@ export const REQUEST_FEED = 'REQUEST_FEED';
 export const HIDE_VIDEO = 'HIDE_VIDEO';
 export const SHOW_VIDEO = 'SHOW_VIDEO';
 
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+
+
 function feedListToIdMap(feedList) {
   var idObj = {};
   for (var i = 0; i< feedList.length; i++) {
@@ -136,9 +139,8 @@ function fetchAndLoadVideo(videoId) {
 }
 
 export function fetchHomeVideos() {
-  console.log('here');
   return function(dispatch) {
-    dispatch(fetchFeed('home', "adventure", "Home", ""));
+    dispatch(fetchFeed('home', "outdoor / adventure", "Home", ""));
   }
 }
 
@@ -201,5 +203,11 @@ export function showVideo(videoId, feedKey) {
     type: SHOW_VIDEO,
     videoId: videoId,
     feedKey: feedKey
+  }
+}
+
+export function toggleSidebar() {
+  return {
+    type: TOGGLE_SIDEBAR
   }
 }
