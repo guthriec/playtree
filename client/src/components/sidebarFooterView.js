@@ -39,7 +39,7 @@ export default class SidebarFooterView extends Component {
           <NavLink
             to={'/submit-info'}
             activeClassName="active">
-            Want to Submit a Video?
+            Submit a Video
           </NavLink>
         </div>
       );
