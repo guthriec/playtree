@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
-
-import GoX from 'react-icons/lib/go/x';
-import IoShare from 'react-icons/lib/io/share';
-import MdPlay from 'react-icons/lib/md/play-circle-outline';
 
 import './videoEntry.css';
 
-export default class VideoEntryView extends Component {
+export default class VideoEntryPreview extends Component {
   componentDidMount() {
     this.props.testDescOverflow(this.refs.desc);
     window.addEventListener("resize", () => {
@@ -20,20 +15,6 @@ export default class VideoEntryView extends Component {
 
   render() {
     const video = this.props.video;
-    if (this.props.videoIsHidden) {
-      return (
-        <div className="hidden-entry">
-          <p>Ok! {video.title} has been hidden.</p>
-          <button
-            onClick={() => {
-              this.props.showVideo(video.shortId, this.props.feedKey);
-            }}
-          >
-            Undo
-          </button>
-        </div>
-      );
-    }
     const uploadDate = new Date(Date.parse(video.uploadDate));
     var uploadDateString = "";
     try {
@@ -41,9 +22,7 @@ export default class VideoEntryView extends Component {
     } catch (err) {}
     const modalState = this.props.modalState;
     const authorModalOpen = modalState.isOpen && modalState.type === "author";
-    const shareModalOpen = modalState.isOpen && modalState.type === "share";
     const descModalOpen = modalState.isOpen && modalState.type === "desc";
-    const linkDestination = this.props.linkDestination;
     var moreButton = "";
     if (this.props.doesDescOverflow) {
       moreButton = (
@@ -77,26 +56,6 @@ export default class VideoEntryView extends Component {
             Added to Playtree on {uploadDateString}
           </p>
         </ReactModal>
-        {/* share modal */}
-        <ReactModal
-          isOpen={shareModalOpen}
-          onRequestClose={this.props.closeModal}
-          onAfterOpen={() => {
-            this.refs.shareLink.select();
-          }}
-          className="share-modal"
-          overlayClassName="modal-overlay"
-        >
-          <button onClick={this.props.closeModal}>Close</button>
-          <h3>Share {video.title}:</h3>
-          <input
-            className="share-field"
-            ref="shareLink"
-            type="text"
-            value={this.props.shareLink}
-            onChange={this.props.handleShareLinkChange}
-          />
-        </ReactModal>
         {/* dexcription modal */}
         <ReactModal
           isOpen={descModalOpen}
@@ -109,35 +68,18 @@ export default class VideoEntryView extends Component {
           <p>{video.description}</p>
         </ReactModal>
         <div className="entry-controls">
-          <button
-            className="share-button"
-            onClick={() => this.props.openModal('share')}
-          >
-            <IoShare size={20} />
-            <p>Share</p>
-          </button>
-          <button
-            className="dismiss-button"
-            onClick={() =>
-              this.props.hideVideo(this.props.video.shortId,
-                                   this.props.feedKey)}
-          >
-            <GoX size={20} />
-            <p>Not now</p>
-          </button>
         </div>
         <div className="video-container">
           <div className="video-top">
             <div className="video-go">
-              <Link className="video-link" to={linkDestination}>
+              <div className="video-link">
                 <div className="poster-overlay">
                 </div>
                 <img className="poster" alt={video.title}
                      src={video.thumbnailUrl} />
                 <div className="play-icon">
-                  <MdPlay size={92} />
                 </div>
-              </Link>
+              </div>
             </div>
             <div className="video-desc">
               <div className="desc-text" ref="desc">

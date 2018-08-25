@@ -21,7 +21,6 @@ export default class FeedView extends Component {
   }
 
   render() {
-    console.log(this.state.width);
     if (this.state.width > 767 || this.props.wideFeed) {
       return (
         <div className={(this.props.wideFeed) ? "wide-feed" : "feed"}>

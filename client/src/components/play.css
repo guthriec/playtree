@@ -73,3 +73,18 @@
 .vjs-control-bar {
   font-size: 16px;
 }
+
+.vimeo-player-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.vimeo-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

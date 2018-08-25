@@ -10,9 +10,9 @@ import ReactModal from 'react-modal';
 
 import './index.css';
 import App from './containers/App';
-import SignIn from './containers/signIn';
-import Uploader from './containers/uploader';
-import SubmissionInfo from './containers/submissionInfo';
+//import SignIn from './containers/signIn';
+//import Uploader from './containers/uploader';
+import Submission from './containers/submission';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import { fetchChannel, fetchHomeVideos, loadUser } from './actions';
@@ -43,9 +43,7 @@ ReactDOM.render(<Provider store={store}>
                              component={App} />
                       <Route path="/channel/:channel" component={App} />
                       <Route path="/video/:video" component={App} />
-                      <Route path="/sign-in" component={SignIn} />
-                      <Route path="/new-upload" component={Uploader} />
-                      <Route path="/submit-info" component={SubmissionInfo} />
+                      <Route path="/submit" component={Submission} />
                       <Route exact path="/" component={App} />
                     </Switch>
                   </Router>

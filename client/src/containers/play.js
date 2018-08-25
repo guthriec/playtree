@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import { feedKeyFromParams } from '../utils';
 
+import { setAsWatched } from '../actions';
+
 import PlayView from '../components/playView';
 
 class Play extends Component {
@@ -14,6 +16,10 @@ class Play extends Component {
     }
     this.onViewerActive = this.onViewerActive.bind(this);
     this.onViewerInactive = this.onViewerInactive.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.setAsWatched(this.props.video);
   }
 
   onViewerActive() {
@@ -40,27 +46,42 @@ class Play extends Component {
 
 const mapStateToProps = function(state, ownProps) {
   var feedVal = {};
-  var feedKey = feedKeyFromParams(ownProps.match.params);
-  if (feedKey in state.feeds) {
-    feedVal = state.feeds[feedKey];
-  }
+  var video = {};
   var feedName = ""
   var feedLocation = ""
-  if ("name" in feedVal) {
-    feedName = feedVal.name
+
+  var feedKey = feedKeyFromParams(ownProps.match.params);
+  var videoId = ownProps.match.params.video;
+  if (feedKey in state.feeds) {
+    feedVal = state.feeds[feedKey];
+    if ("name" in feedVal) {
+      feedName = feedVal.name
+    }
+    if ("location" in feedVal) {
+      feedLocation = feedVal.location
+    }
+    if (videoId in feedVal.videos) {
+      video = feedVal.videos[videoId];
+    } else {
+      video = state.videos.activeVideo;
+    }
+  } else {
+    console.log('wtf');
   }
-  if ("location" in feedVal) {
-    feedLocation = feedVal.location
-  }
+
   return {
-    video: state.videos.activeVideo,
+    video: video,
     feedName: feedName,
     feedLocation: feedLocation
   }
 };
 
 const mapDispatchToProps = function(dispatch) {
-  return {}
+  return {
+    setAsWatched: (video) => {
+      dispatch(setAsWatched(video));
+    }
+  }
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Play));

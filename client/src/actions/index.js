@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 
 export * from './authActions';
+export * from './videoActions';
 
 export const CACHE_VIDEO_INFO = 'CACHE_VIDEO_INFO';
 export const LOAD_VIDEO = 'LOAD_VIDEO';
@@ -22,9 +23,11 @@ export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 function feedListToIdMap(feedList) {
   var idObj = {};
   for (var i = 0; i< feedList.length; i++) {
-    var currVid = feedList[i].video;
+    var currVid = feedList[i].videoData;
+    var currServedId = feedList[i].servedId;
     currVid.isHidden = false;
     currVid.score = feedList[i].score;
+    currVid.servedId = currServedId;
     idObj[currVid.shortId] = currVid;
   }
   return idObj;
@@ -63,7 +66,8 @@ export function fetchFeed(feedKey, adjective, name, location) {
           dispatch(receiveFeed(feedKey, adjective, name, location, videos));
           var videosById = {};
           for (var i in videos) {
-            var video = videos[i].video;
+            var video = videos[i].videoData;
+            video.servedId = videos[i].servedId;
             videosById[video.shortId] = video;
           }
           dispatch(cacheVideoInfo(videosById));

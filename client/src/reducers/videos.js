@@ -1,12 +1,15 @@
 import {
   CACHE_VIDEO_INFO,
   LOAD_VIDEO,
-  CLEAR_ACTIVE_VIDEO
+  CLEAR_ACTIVE_VIDEO,
+  RECEIVE_IMPORTED_VIDEO,
 } from '../actions';
 
 const initialState = {
   activeVideo: {},
-  videos: {}
+  videos: {},
+  receivedImportedVideo: false,
+  importedVideo: {}
 }
 
 export default function videos(state = initialState, action) {
@@ -24,6 +27,12 @@ export default function videos(state = initialState, action) {
       return Object.assign({}, state, {
         activeVideo: {}
       });
+    case RECEIVE_IMPORTED_VIDEO:
+      return {
+        ...state,
+        receivedImportedVideo: true,
+        importedVideo: action.video
+      };
     default:
       return state;
   }

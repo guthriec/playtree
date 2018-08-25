@@ -10,11 +10,13 @@ const Channel = Models.Channel;
 const Feed = require('./model/feed');
 const User = require('./model/user');
 const ScoredVideo = require('./model/scoredVideo');
+const ServedVideo = require('./model/servedVideo');
 const path = require('path');
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
+var request = require('request');
 
 var app = express();
 var router = express.Router();
@@ -44,6 +46,77 @@ router.options("*", cors);
 
 router.get('/', function(req, res) {
   res.json({ message: 'API Initialized...'});
+});
+
+router.post('/import', function(req, res) {
+  var vimeoUrl = req.body.vimeoUrl;
+  var vimeoEndpoint = ('https://vimeo.com/api/oembed.json' +
+                       '?url=' +
+                       encodeURIComponent(vimeoUrl));
+  request(vimeoEndpoint, { json: true }, (err, apiRes, body) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    var uniqueSourceId = body.provider_url + body.video_id;
+    Video.findOne({uniqueSourceId: uniqueSourceId}, function(err, video) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Internal error finding video: " + err);
+      } else if (video) {
+        return res.status(200).json({video: video});
+      } else {
+        Video.create({
+          thumbnailUrl: body.thumbnail_url,
+          title: body.title,
+          description: body.description,
+          author: body.author_name,
+          authorUrl: body.author_url,
+          sourceUrl: vimeoUrl,
+          sourceId: body.video_id,
+          sourceName: "Vimeo",
+          uniqueSourceId: uniqueSourceId
+        }, function(createErr, newVideo) {
+          if (createErr) {
+            console.log(createErr);
+            return res.status(500).send("Internal error creating video: " + createErr);
+          } else {
+            ScoredVideo.create({
+              video: newVideo,
+              feed: 'home'
+            }, function(scoredCreateErr, scoredVideo) {
+              if (scoredCreateErr) {
+                console.log(scoredCreateErr);
+              }
+            });
+            return res.status(200).json({video: newVideo});
+          }
+        });
+      }
+    });
+  })
+});
+
+router.post('/suggest-channel', function(req, res) {
+  console.log(req.body);
+  var query = { shortId: req.body.videoId, channels: { $ne: req.body.channelTopic } };
+  Video.findOneAndUpdate(query,
+    { $push: { channels: req.body.channelTopic } },
+    function(err, video) {
+      if (err) {
+        console.log(err);
+      }
+      ScoredVideo.create({
+        video: video,
+        feed: req.body.channelUrl
+      }, function(scoredCreateErr, scoredVideo) {
+        if (scoredCreateErr) {
+          console.log(scoredCreateErr);
+        }
+      });
+    
+    }
+  );
 });
 
 router.post('/login',
@@ -89,14 +162,53 @@ router.route('/feed/:feedKey')
     .sort({ score: -1 })
     .limit(20)
     .then(scoredVideos => {
-      res.json({
-        info: feed,
-        videos: scoredVideos
-      })
+      Promise.all(scoredVideos.map((scoredVideo) => {
+        return ServedVideo.create({
+          videoId: scoredVideo.video.shortId,
+          scoredVideo: scoredVideo._id,
+          feed: feed.key
+        }).then((servedVideo) => {
+          return ScoredVideo.findByIdAndUpdate(
+            scoredVideo._id,
+            { $inc: {'runningServedCount' : 1}},
+            { new: true }
+          ).then((newScoredVideo) => {
+            newScoredVideo.updateScore();
+            return {
+              servedId: servedVideo._id,
+              videoData: scoredVideo.video
+            };
+          })
+        }).catch((err) => {
+          console.log('ERRRRORRR: ' + err);
+        });
+      }))
+      .then((videos) => {
+        res.json({
+          info: feed,
+          videos: videos
+        });
+      });
     })
+    .catch((err) => {
+      console.log('another error!: ' + err);
+    })
+  })
+  .catch((err) => {
+    console.log('the biggest error!: ' + err);
   })
 })
 
+router.route('/channel')
+.get(function(req, res) {
+  Channel.find({})
+  .select('topic', 'urlSegment')
+  .then(channels => {
+    res.json({
+      channels: channels
+    })
+  })
+});
 
 router.route('/channel/:channel')
 .get(function(req, res) {
@@ -109,10 +221,26 @@ router.route('/channel/:channel')
   })
 });
 
-router.route('/feedback')
+router.route('/watched')
 .post(function(req, res) {
-  res.json([]);
-})
+  ServedVideo.findByIdAndUpdate(req.body.servedId, {'watched': true})
+  .then(oldServedVideo => {
+    if (!oldServedVideo.watched) {
+      ScoredVideo.findByIdAndUpdate(
+        oldServedVideo.scoredVideo,
+        { $inc: {'runningViewCount' : 1}},
+        { new: true }
+      ).then((newScoredVideo) => {
+        newScoredVideo.updateScore();
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+});
 
 app.use('/api', router);
 

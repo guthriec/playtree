@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var ServedVideoSchema = new Schema({
+  scoredVideo: { type: Schema.Types.ObjectId, ref: 'ScoredVideo' },
   videoId: String,
   feed: String,
-  servedOn: Date
+  servedAt: { type: Date, default: Date.now },
+  watched: { type: Boolean, default: false }
 });
+
+module.exports = mongoose.model('ServedVideo', ServedVideoSchema);

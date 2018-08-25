@@ -195,21 +195,21 @@ button {
   padding: 10px;
   max-width: 60%;
   max-height: 60%;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 .share-modal {
   position: fixed;
   width: 600px;
   max-height: 60%;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 .desc-modal {
@@ -217,10 +217,10 @@ button {
   max-width: 60%;
   max-height: 60%;
   padding: 10px;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ccc;
+  background-color: #fff;
   line-height: 1.75;
   overflow: scroll;
 }

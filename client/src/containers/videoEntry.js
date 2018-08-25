@@ -75,6 +75,7 @@ class VideoEntry extends Component {
         testDescOverflow={this.testDescOverflow}
         feed={this.props.feed}
         feedKey={this.props.feedKey}
+        setAsWatched={this.props.setAsWatched}
       />
     );
   }
